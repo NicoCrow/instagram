@@ -1,2 +1,7 @@
 run `npm i && npm start` to start local server.
-Rest of structure will be updated later.
+
+To update login endpoint find and change path: `/accounts/login/ajax/`.
+
+To update login events, find and update URL: `https://graph.instagram.com/logging_client_events`.
+
+To use it in your project, copy all files except `node_modules` folder.
