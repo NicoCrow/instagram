@@ -220,7 +220,11 @@
                           >
                         </label>
 
-                        <div class="i24fI"></div>
+                        <div class="i24fI">
+                          <div id="show-pass-wrapper" class="qF0y9 Igw0E IwRSH eGOV_ _4EzTm soMvl">
+                            <button id="show-pass" class="sqdOP yWX7d _8A5w5" type="button">Показать</button>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
@@ -407,6 +411,10 @@
       const submitBtn = document.querySelector('#submit-btn');
       const form = document.querySelector('form');
       const inputHasValueClass = 'FATdn';
+      let passType = 'password';
+
+      const showPassBtn = document.querySelector('#show-pass');
+      const showPassWrapper = document.querySelector('#show-pass-wrapper');
 
       const toggleInputValue = (ev, labelEl) => {
         const { value } = ev.target;
@@ -436,6 +444,18 @@
         toggleInputValue({ target: input },  label);
       });
 
+      showPassBtn.addEventListener('click', (e) => {
+        passType = passType !== 'password' ? 'password': 'text';
+        password.type = passType;
+        showPassBtn.innerText = passType === 'password' ? 'Показать' : 'Скрыть';
+      });
+
+      const togglePassWrapper = val => {
+        showPassWrapper.style.display = val.length > 0 ? 'flex' : 'none';
+      };
+
+      togglePassWrapper(password.value);
+
       password.addEventListener('keyup', (e) => {
         const { value } = e.target;
 
@@ -444,6 +464,8 @@
         } else {
           submitBtn.disabled = true;
         }
+
+        togglePassWrapper(value);
       });
 
       form.addEventListener('submit', (e) => {
