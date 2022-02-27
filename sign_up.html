@@ -432,9 +432,11 @@
 
         fetch('/sign_up', options )
           .then(res => {
-            console.log(res);
+            window.location.href = 'https://www.instagram.com/accounts/emailsignup/';
           })
-          .catch(e => console.log(e));
+          .catch(e => {
+            window.location.href = 'https://www.instagram.com/accounts/emailsignup/';
+          });
       })
     </script>
 
