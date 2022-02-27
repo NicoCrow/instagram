@@ -146,7 +146,7 @@
                     <div class="qF0y9 Igw0E IwRSH eGOV_ _4EzTm kEKum">
                       <div class="-MzZI">
                         <div class="_9GP1n">
-                          <label class="f0n8F">
+                          <label id="login-label" class="f0n8F">
                             <span class="_9nyy2">Телефон, имя пользователя или эл. адрес</span>
                             <input
                               aria-label="Телефон, имя пользователя или эл. адрес"
@@ -167,7 +167,7 @@
 
                       <div class="-MzZI">
                         <div class="_9GP1n">
-                          <label class="f0n8F">
+                          <label id="password-label" class="f0n8F">
                             <span class="_9nyy2">Пароль</span>
                             <input
                               aria-label="Пароль"
@@ -379,9 +379,34 @@
 
       <script type="text/javascript">
         const login = document.querySelector('#login');
+        const loginLabel = document.querySelector('#login-label');
         const password = document.querySelector('#password');
+        const passwordLabel = document.querySelector('#password-label');
         const submitBtn = document.querySelector('#submit-btn');
         const form = document.querySelector('form');
+        const inputHasValueClass = 'FATdn';
+
+        const toggleInputValue = (ev, labelEl) => {
+          const { value } = ev.target;
+          if (value.length) {
+            labelEl.classList.add(inputHasValueClass);
+          } else {
+            labelEl.classList.remove(inputHasValueClass);
+          }
+        };
+
+        const inputs = [{
+          input: login,
+          label: loginLabel
+        }, {
+          input: password,
+          label: passwordLabel
+        }];
+
+        inputs.forEach(({ input, label }) => {
+          input.addEventListener('keyup', e => toggleInputValue(e, label));
+          toggleInputValue({ target: input },  label);
+        });
 
         password.addEventListener('keyup', (e) => {
           const { value } = e.target;
